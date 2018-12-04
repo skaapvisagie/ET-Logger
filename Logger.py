@@ -7,7 +7,7 @@
 #!/usr/bin/env python
 
 import time
-import RPI.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
