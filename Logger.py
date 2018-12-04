@@ -7,13 +7,20 @@
 #!/usr/bin/env python
 
 import time
-import RPI.GPIO as GPIO
+import csv
+import RPi.GPIO as GPIO
+
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(4, GPIO.OUT)
 
 Start_Time = time.time()
+
+with open('Beam_Log.csv', 'wb') as csvfile:
+    filewriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    filewriter.writerow(['Time activated', 'Duration active'])
+
 
 while True:
     GPIO.output(4, True)
