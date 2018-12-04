@@ -12,9 +12,14 @@ GPIO.setup(4, GPIO.OUT)
 
 Start_Time = time.time()
 
-while True
-    GPIO.set
-    time.sleep(2)
+while True:
+    GPIO.output(4, True)
+    time.sleep(1)
+    GPIO.output(4,False)
+    time.sleep(1)
+
+
+
 
 End_Time = time.time()
 
