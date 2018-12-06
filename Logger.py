@@ -19,9 +19,9 @@ GPIO.setup(Beam1, GPIO.IN)
 
 Start_Time = time.time()
 
-with open('Beam_Log.csv', 'wb') as csvfile:
-    filewriter = csv.writer(csvfile, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
-    filewriter.writerow(['Time activated', 'Duration active'])
+with open('Beam_Log.csv', 'w') as BeamLog:
+    BeamLogFile = csv.writer(BeamLog, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    BeamLogFile.writerow(['Time activated', 'Duration active'])
 
 
 while True:
@@ -36,7 +36,7 @@ while True:
         End_Time = time.time()
         Delta = str(End_Time - Start_Time)
 
-    filewriter.writerow([Trigger_Time, Delta])
+    BeamLogFile.writerow([Trigger_Time, Delta])
 
     GPIO.cleanup()
 
