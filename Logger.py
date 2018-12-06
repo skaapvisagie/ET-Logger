@@ -27,14 +27,15 @@ with open('Beam_Log.csv', 'wb') as csvfile:
 while True:
 
     if Beam1:
-        Trigger_Time = datetime.now()
+        Trigger_Time = str(datetime.now())
         Start_Time = time.time()
         while Beam1:
+            pass
 
         End_Time = time.time()
-        Delta = End_Time - Start_Time
+        Delta = str(End_Time - Start_Time)
 
-        filewriter.writerow([datetime.now(), Delta])
+    filewriter.writerow([Trigger_Time, Delta])
 
 
 #    GPIO.output(4, True)
