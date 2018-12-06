@@ -27,7 +27,7 @@ with open('Beam_Log.csv', 'wb') as csvfile:
 while True:
 
     if GPIO.input(Beam1) == GPIO.HIGH:
-        Trigger_Time = str(datetime.now())
+        Trigger_Time = str(datetime.datetime())
         Start_Time = time.time()
 
         while GPIO.input(Beam1) == GPIO.HIGH:
