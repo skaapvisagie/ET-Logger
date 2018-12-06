@@ -38,6 +38,7 @@ while True:
 
     filewriter.writerow([Trigger_Time, Delta])
 
+    GPIO.cleanup()
 
 #    GPIO.output(4, True)
 #    time.sleep(1)
