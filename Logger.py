@@ -7,7 +7,7 @@
 #!/usr/bin/env python
 
 import time
-import datetime
+from datetime import datetime
 import csv
 import RPi.GPIO as GPIO
 
@@ -27,7 +27,7 @@ with open('Beam_Log.csv', 'wb') as csvfile:
 while True:
 
     if GPIO.input(Beam1) == GPIO.HIGH:
-        Trigger_Time = str(datetime.datetime())
+        Trigger_Time = str(datetime.now())
         Start_Time = time.time()
 
         while GPIO.input(Beam1) == GPIO.HIGH:
