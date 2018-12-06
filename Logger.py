@@ -15,7 +15,7 @@ Beam1 = 4
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(Beam1, GPIO.OUT)
+GPIO.setup(Beam1, GPIO.IN)
 
 Start_Time = time.time()
 
@@ -26,10 +26,11 @@ with open('Beam_Log.csv', 'wb') as csvfile:
 
 while True:
 
-    if Beam1:
+    if GPIO.input(Beam1) == GPIO.HIGH:
         Trigger_Time = str(datetime.now())
         Start_Time = time.time()
-        while Beam1:
+
+        while GPIO.input(Beam1) == GPIO.HIGH:
             pass
 
         End_Time = time.time()
