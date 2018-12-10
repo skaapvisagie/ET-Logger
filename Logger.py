@@ -13,16 +13,16 @@ import RPi.GPIO as GPIO
 import csv
 
 Beam1 = 4
+Led = 17
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
-
-GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(Beam1, GPIO.IN)
-GPIO.setup(17, GPIO.OUT)
+GPIO.setup(Led, GPIO.OUT)   # Set LedPin's mode is output
+GPIO.setup(Beam1, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)    # Set BtnPin's mode is input, and pull down
 
 
-GPIO.output(17, True)
+
+GPIO.output(Led, True)
 #Start_Time = time.time()
 
 with open('Beam_Log.csv', 'wb') as csvfile:
@@ -37,7 +37,7 @@ with open('Beam_Log.csv', 'a') as csvfile:
     Append_Log.writerow([Beam1, '0'])
 csvfile.close()
 
-GPIO.output(17, False)
+GPIO.output(Led, False)
 
 
 
