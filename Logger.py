@@ -28,7 +28,7 @@ GPIO.output(Led, True)
 with open('Beam_Log.csv', 'wb') as csvfile:
     filewriter = csv.writer(csvfile, delimiter=',',
                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
-    filewriter.writerow(['Date Triggered', 'Duration'])
+    filewriter.writerow(['Date Triggered', 'Duration[sec]'])
 
 time.sleep(1)
 
