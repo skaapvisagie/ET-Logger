@@ -24,19 +24,19 @@ time.sleep(5)
 GPIO.output(17, False)
 
 #Start_Time = time.time()
-
-with open('Beam_Log.csv', 'a') as BeamLog:
-    BeamLogFile = csv.writer(BeamLog, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
+file = open("/home/ET-Logger/Beam_Log.csv", "a")
+if os.stat("/home/ET-Logger/Beam_Log.csv").st_size == 0:
+        file.write("Time Triggered ,Duration of trigger\n")
 
 GPIO.output(17, True)
-BeamLogFile.writerow(['Time activated', 'Duration active'])
+
 time.sleep(1)
 GPIO.output(17, False)
 
 while True:
 
     if GPIO.input(Beam1) == GPIO.HIGH:
-        Trigger_Time = str(datetime.now())
+        Trigger_Time = datetime.now()
         Start_Time = time.time()
 
         GPIO.output(17, True)
@@ -48,10 +48,9 @@ while True:
         GPIO.output(17, False)
 
         End_Time = time.time()
-        Delta = str(End_Time - Start_Time)
-        row = [Trigger_Time, Delta]
+        Delta = End_Time - Start_Time
 
-    BeamLogFile.writerow(row)
+file.write(str(Trigger_Time) + "," + str(Delta) + "\n")
 
     GPIO.cleanup()
 
