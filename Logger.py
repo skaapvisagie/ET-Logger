@@ -44,8 +44,6 @@ def loop():
     GPIO.add_event_detect(Beam1, GPIO.RISING, callback=Start_Log,
                           bouncetime=200)  # wait for falling and set bouncetime to prevent the callback function from being called multiple times when the button is pressed
 
-    GPIO.add_event_detect(Beam1, GPIO.FALLING, callback=Stop_Log,
-                          bouncetime=200)  # wait for falling and set bouncetime to prevent the callback function from being called multiple times when the button is pressed
 
     while True:
         pass
@@ -94,9 +92,8 @@ def loop():
 #print(Delta)
 
 def Start_Log():
-    GPIO.output(Led, True)
-
-def Stop_Log():
+    while Beam1 == 1:
+        GPIO.output(Led, True)
     GPIO.output(Led, False)
 
 try:
