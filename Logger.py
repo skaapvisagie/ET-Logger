@@ -45,7 +45,7 @@ def loop():
 
 
 def Start_Log(ev=None):
-    Trigger_Date = datetime.date.today().strtime(%y-%m-%d)
+    Trigger_Date = datetime.date.today().strtime("%y-%m-%d")
     Start_Time = time.time()
 
     while (GPIO.input(Beam1)):
