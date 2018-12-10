@@ -40,35 +40,44 @@ csvfile.close()
 GPIO.output(Led, False)
 
 
+def loop():
+    GPIO.add_event_detect(Beam1, GPIO.RISING, callback=Start_Log,
+                          bouncetime=200)  # wait for falling and set bouncetime to prevent the callback function from being called multiple times when the button is pressed
 
-while True:
+    GPIO.add_event_detect(Beam1, GPIO.FALLING, callback=Stop_Log,
+                          bouncetime=200)  # wait for falling and set bouncetime to prevent the callback function from being called multiple times when the button is pressed
 
-    if GPIO.input(Beam1) == 1:
-        GPIO.output(17, True)
+    while True:
+        pass
         """
-        Trigger_Time = datetime.now()
-        Start_Time = time.time()
-
-         GPIO.output(17, True)
+        if GPIO.input(Beam1) == 1:
+            GPIO.output(17, True)
+           
+            Trigger_Time = datetime.now()
+            Start_Time = time.time()
+    
+             GPIO.output(17, True)
+            
+            while GPIO.input(Beam1) == 1:
+               # GPIO.output(17, True)
+                pass
+    
+           # GPIO.output(17, False)
+            
+            End_Time = time.time()
+            Delta = End_Time - Start_Time
+    
+        with open('Beam_Log.csv', 'a') as csvfile:
+            Append_Log = csv.writer(csvfile)
+            Append_Log.writerow([Trigger_Time, Delta])
+        csvfile.close()
         
-        while GPIO.input(Beam1) == 1:
-           # GPIO.output(17, True)
-            pass
+        else:
+            GPIO.output(17, False)
 
-       # GPIO.output(17, False)
         
-        End_Time = time.time()
-        Delta = End_Time - Start_Time
+        """
 
-    with open('Beam_Log.csv', 'a') as csvfile:
-        Append_Log = csv.writer(csvfile)
-        Append_Log.writerow([Trigger_Time, Delta])
-    csvfile.close()
-    """
-    else:
-        GPIO.output(17, False)
-
-    GPIO.cleanup()
 
 #    GPIO.output(4, True)
 #    time.sleep(1)
@@ -83,3 +92,9 @@ while True:
 #print(Start_Time)
 #print(End_Time)
 #print(Delta)
+
+def Start_Log():
+    GPIO.output(Led, True)
+
+def Stop_Log():
+    GPIO.output(Led, False)
