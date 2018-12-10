@@ -16,6 +16,10 @@ Beam1 = 4
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(Beam1, GPIO.IN)
+GPIO.setup(17, GPIO.OUT)
+GPIO.output(17, False)
+
+
 
 Start_Time = time.time()
 
@@ -31,8 +35,11 @@ while True:
         Start_Time = time.time()
 
         while GPIO.input(Beam1) == GPIO.HIGH:
+            GPIO.output(17, True)
             pass
 
+        GPIO.output(17, False)
+        
         End_Time = time.time()
         Delta = str(End_Time - Start_Time)
 
