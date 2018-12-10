@@ -50,7 +50,7 @@ while True:
         End_Time = time.time()
         Delta = End_Time - Start_Time
 
-file.write(str(Trigger_Time) + "," + str(Delta) + "\n")
+    file.write(str(Trigger_Time) + "," + str(Delta) + "\n")
 
     GPIO.cleanup()
 
