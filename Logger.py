@@ -40,7 +40,7 @@ csvfile.close()
 GPIO.output(Led, False)
 
 try:
-    Loop()
+    loop()
 
 except KeyboardInterrupt:
     GPIO.output(Led, False)  # led off
