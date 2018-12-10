@@ -24,8 +24,8 @@ time.sleep(5)
 GPIO.output(17, False)
 
 #Start_Time = time.time()
-file = open("/home/ET-Logger/Beam_Log.csv", "a")
-if os.stat("/home/ET-Logger/Beam_Log.csv").st_size == 0:
+file = open("/home/pi/ET-Logger/Beam_Log.csv", "a")
+if os.stat("/home/pi/ET-Logger/Beam_Log.csv").st_size == 0:
         file.write("Time Triggered ,Duration of trigger\n")
 
 GPIO.output(17, True)
@@ -50,7 +50,10 @@ while True:
         End_Time = time.time()
         Delta = End_Time - Start_Time
 
+    file = open("/home/pi/ET-Logger/Beam_Log.csv", "a")
     file.write(str(Trigger_Time) + "," + str(Delta) + "\n")
+    file.flush()
+    file.close()
 
     GPIO.cleanup()
 
