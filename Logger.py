@@ -39,6 +39,12 @@ csvfile.close()
 
 GPIO.output(Led, False)
 
+try:
+    Loop()
+
+except KeyboardInterrupt:
+    GPIO.output(Led, False)  # led off
+    GPIO.cleanup()  # Release resource
 
 def loop():
     GPIO.add_event_detect(Beam1, GPIO.RISING, callback=Start_Log,
@@ -98,3 +104,4 @@ def Start_Log():
 
 def Stop_Log():
     GPIO.output(Led, False)
+
