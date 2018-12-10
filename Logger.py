@@ -15,20 +15,18 @@ Beam1 = 4
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+
+
 GPIO.setup(Beam1, GPIO.IN)
 GPIO.setup(17, GPIO.OUT)
+GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 GPIO.output(17, True)
-time.sleep(5)
-GPIO.output(17, False)
-
 #Start_Time = time.time()
 file = open("/home/pi/ET-Logger/Beam_Log.csv", "a")
 if os.stat("/home/pi/ET-Logger/Beam_Log.csv").st_size == 0:
         file.write("Time Triggered ,Duration of trigger\n")
 
-GPIO.output(17, True)
 
 time.sleep(1)
 GPIO.output(17, False)
