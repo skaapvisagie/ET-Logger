@@ -37,7 +37,7 @@ GPIO.output(Led, False)
 
 def loop():
     GPIO.add_event_detect(Beam1, GPIO.RISING, callback=Start_Log,
-                          bouncetime=200)  # wait for falling and set bouncetime to prevent the callback function from being called multiple times when the button is pressed
+                          bouncetime=500)  # wait for falling and set bouncetime to prevent the callback function from being called multiple times when the button is pressed
 
     while True:
         pass
