@@ -92,7 +92,7 @@ def loop():
 #print(Delta)
 
 def Start_Log(ev=None):
-    while Beam1 == 1:
+    while GPIO.input == True:
         GPIO.output(Led, True)
     GPIO.output(Led, False)
 
