@@ -28,7 +28,7 @@ GPIO.output(Led, True)
 with open('Beam_Log.csv', 'wb') as csvfile:
     filewriter = csv.writer(csvfile, delimiter=',',
                             quotechar='|', quoting=csv.QUOTE_MINIMAL)
-    filewriter.writerow(['Trigger Time', 'Duration'])
+    filewriter.writerow(['Date Triggered', 'Time Triggered', 'Duration'])
 
 time.sleep(1)
 
@@ -45,7 +45,7 @@ def loop():
 
 
 def Start_Log(ev=None):
-    Trigger_Time = datetime.now()
+    Trigger_Date = datetime.date()
     Start_Time = time.time()
 
     while (GPIO.input(Beam1)):
@@ -55,7 +55,7 @@ def Start_Log(ev=None):
 
     with open('Beam_Log.csv', 'a') as csvfile:
         Append_Log = csv.writer(csvfile)
-        Append_Log.writerow([Trigger_Time, Delta])
+        Append_Log.writerow([Trigger_Date, Start_Time, Delta])
     csvfile.close()
 
     GPIO.output(Led, False)
