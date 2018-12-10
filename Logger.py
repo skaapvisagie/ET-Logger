@@ -15,6 +15,7 @@ Beam1 = 4
 
 GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
+GPIO.setup(PIN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(Beam1, GPIO.IN)
 GPIO.setup(17, GPIO.OUT)
 
@@ -40,7 +41,7 @@ while True:
 
         GPIO.output(17, True)
 
-        while GPIO.input(Beam1) == GPIO.HIGH:
+        while GPIO.input(Beam1) == 1:
            # GPIO.output(17, True)
             pass
 
