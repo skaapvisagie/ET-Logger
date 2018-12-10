@@ -44,17 +44,19 @@ GPIO.output(17, False)
 while True:
 
     if GPIO.input(Beam1) == 1:
+        GPIO.output(17, True)
+        """
         Trigger_Time = datetime.now()
         Start_Time = time.time()
 
-       # GPIO.output(17, True)
-
+         GPIO.output(17, True)
+        
         while GPIO.input(Beam1) == 1:
            # GPIO.output(17, True)
             pass
 
        # GPIO.output(17, False)
-
+        
         End_Time = time.time()
         Delta = End_Time - Start_Time
 
@@ -62,6 +64,9 @@ while True:
         Append_Log = csv.writer(csvfile)
         Append_Log.writerow([Trigger_Time, Delta])
     csvfile.close()
+    """
+    else:
+        GPIO.output(17, False)
 
     GPIO.cleanup()
 
