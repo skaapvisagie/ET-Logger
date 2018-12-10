@@ -10,6 +10,7 @@ import time
 from datetime import datetime
 import os
 import RPi.GPIO as GPIO
+import csv
 
 Beam1 = 4
 
@@ -24,14 +25,18 @@ GPIO.setup(17, GPIO.OUT)
 GPIO.output(17, True)
 #Start_Time = time.time()
 
-file = open("Beam_Log.csv", "a")
-if os.stat("Beam_Log.csv").st_size == 0:
-    file.write("Time Triggered ,Duration of trigger\n")
-
+with open('Beam_Log.csv', 'wb') as csvfile:
+    filewriter = csv.writer(csvfile, delimiter=',',
+                            quotechar='|', quoting=csv.QUOTE_MINIMAL)
+    filewriter.writerow(['Trigger Time', 'Duration'])
 
 time.sleep(1)
-file.write("hello, world\n")
-file.close()
+
+with open('Beam_Log.csv', 'a') as csvfile:
+    Append_Log = csv.writer(csvfile)
+    Append_Log.writerow([Beam1, '0'])
+csvfile.close()
+
 GPIO.output(17, False)
 
 """
