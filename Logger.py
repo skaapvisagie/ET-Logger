@@ -24,12 +24,14 @@ GPIO.setup(17, GPIO.OUT)
 GPIO.output(17, True)
 #Start_Time = time.time()
 
-file = open("/home/pi/ET-Logger/Beam_Log.csv", "a")
-#if os.stat("/home/pi/ET-Logger/Beam_Log.csv").st_size == 0:
-file.write("Time Triggered ,Duration of trigger\n")
+file = open("Beam_Log.csv", "a")
+if os.stat("Beam_Log.csv").st_size == 0:
+    file.write("Time Triggered ,Duration of trigger\n")
 
 
 time.sleep(1)
+file.write("hello, world\n")
+file.close()
 GPIO.output(17, False)
 
 """
