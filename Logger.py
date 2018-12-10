@@ -14,7 +14,7 @@ import RPi.GPIO as GPIO
 Beam1 = 4
 
 GPIO.setwarnings(False)
-GPIO.setmode(GPIO.BCM)
+GPIO.setmode(GPIO.BOARD)
 GPIO.setup(17, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.setup(Beam1, GPIO.IN)
 GPIO.setup(17, GPIO.OUT)
@@ -35,7 +35,7 @@ GPIO.output(17, False)
 
 while True:
 
-    if GPIO.input(Beam1) == GPIO.HIGH:
+    if GPIO.input(Beam1) == 1:
         Trigger_Time = datetime.now()
         Start_Time = time.time()
 
