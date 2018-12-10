@@ -77,23 +77,20 @@ def loop():
         """
 
 
-#    GPIO.output(4, True)
-#    time.sleep(1)
-#    GPIO.output(4,False)
-#    time.sleep(1)
-
-
-
-#End_Time = time.time()
-
-#Delta = End_Time - Start_Time
-#print(Start_Time)
-#print(End_Time)
-#print(Delta)
-
 def Start_Log(ev=None):
+    Trigger_Time = datetime.now()
+    Start_Time = time.time()
+
     while (GPIO.input(Beam1)):
         GPIO.output(Led, True)
+
+    Delta = time.time() - Start_Time
+
+    with open('Beam_Log.csv', 'a') as csvfile:
+        Append_Log = csv.writer(csvfile)
+        Append_Log.writerow([Trigger_Time, Delta])
+    csvfile.close()
+
     GPIO.output(Led, False)
 
 try:
