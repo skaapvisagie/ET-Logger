@@ -39,7 +39,7 @@ csvfile.close()
 
 GPIO.output(17, False)
 
-"""
+
 
 while True:
 
@@ -58,10 +58,10 @@ while True:
         End_Time = time.time()
         Delta = End_Time - Start_Time
 
-    file = open("/home/pi/ET-Logger/Beam_Log.csv", "a")
-    file.write(str(Trigger_Time) + "," + str(Delta) + "\n")
-    file.flush()
-    file.close()
+    with open('Beam_Log.csv', 'a') as csvfile:
+        Append_Log = csv.writer(csvfile)
+        Append_Log.writerow([Trigger_Time, Delta])
+    csvfile.close()
 
     GPIO.cleanup()
 
@@ -78,5 +78,3 @@ while True:
 #print(Start_Time)
 #print(End_Time)
 #print(Delta)
-
-"""
