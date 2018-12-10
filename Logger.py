@@ -8,7 +8,7 @@
 
 import time
 from datetime import datetime
-import csv
+import os
 import RPi.GPIO as GPIO
 
 Beam1 = 4
