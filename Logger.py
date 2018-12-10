@@ -17,28 +17,27 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(Beam1, GPIO.IN)
 GPIO.setup(17, GPIO.OUT)
-GPIO.output(17, True)
 
+GPIO.output(17, True)
 time.sleep(5)
 GPIO.output(17, False)
 
-
-
-Start_Time = time.time()
+#Start_Time = time.time()
 
 with open('Beam_Log.csv', 'a') as BeamLog:
     BeamLogFile = csv.writer(BeamLog, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
-    GPIO.output(17, True)
-    BeamLogFile.writerow(['Time activated', 'Duration active'])
-    time.sleep(1)
-    GPIO.output(17, False)
+
+GPIO.output(17, True)
+BeamLogFile.writerow(['Time activated', 'Duration active'])
+time.sleep(1)
+GPIO.output(17, False)
 
 while True:
 
     if GPIO.input(Beam1) == GPIO.HIGH:
         Trigger_Time = str(datetime.now())
         Start_Time = time.time()
-        
+
         GPIO.output(17, True)
 
         while GPIO.input(Beam1) == GPIO.HIGH:
