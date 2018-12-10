@@ -19,7 +19,7 @@ GPIO.setup(Beam1, GPIO.IN)
 
 Start_Time = time.time()
 
-with open('Beam_Log.csv', 'w') as BeamLog:
+with open('Beam_Log.csv', 'a') as BeamLog:
     BeamLogFile = csv.writer(BeamLog, delimiter=',', quotechar='|', quoting=csv.QUOTE_MINIMAL)
     BeamLogFile.writerow(['Time activated', 'Duration active'])
 
