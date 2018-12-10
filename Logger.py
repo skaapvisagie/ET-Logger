@@ -36,7 +36,7 @@ GPIO.output(17, False)
 while True:
 
     if GPIO.input(Beam1) == GPIO.HIGH:
-        Trigger_Time: str = str(datetime.now())
+        Trigger_Time = str(datetime.now())
         Start_Time = time.time()
 
         GPIO.output(17, True)
@@ -50,7 +50,7 @@ while True:
         End_Time = time.time()
         Delta = str(End_Time - Start_Time)
         row = [Trigger_Time, Delta]
-        
+
     BeamLogFile.writerow(row)
 
     GPIO.cleanup()
