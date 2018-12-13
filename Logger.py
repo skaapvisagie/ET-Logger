@@ -45,7 +45,7 @@ def loop():
 
 
 def Start_Log(ev=None):
-    time.sleep(0.5)
+    time.sleep(0.1)
     if GPIO.input(Beam1):
 
         Trigger_Date = time.strftime("      %a %d-%m-%Y @ %H:%M:%S")
@@ -56,7 +56,7 @@ def Start_Log(ev=None):
 
         Delta = time.time() - Start_Time
 
-        if Delta >= 0.5:
+        if Delta >= 0.1:
             with open('Beam_Log.csv', 'a') as csvfile:
                 Append_Log = csv.writer(csvfile)
                 Append_Log.writerow([Trigger_Date, Delta])
