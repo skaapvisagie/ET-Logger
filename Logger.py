@@ -12,7 +12,7 @@ import os
 import RPi.GPIO as GPIO
 import csv
 
-Beam1: int = 4
+Beam1 = 4
 Led = 17
 
 GPIO.setwarnings(False)
