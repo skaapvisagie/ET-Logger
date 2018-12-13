@@ -12,7 +12,7 @@ import os
 import RPi.GPIO as GPIO
 import csv
 
-Beam1 = 4
+Beam1: int = 4
 Led = 17
 
 GPIO.setwarnings(False)
@@ -37,7 +37,7 @@ GPIO.output(Led, False)
 
 def loop():
     GPIO.add_event_detect(Beam1, GPIO.RISING, callback=Start_Log,
-                          bouncetime=500)  # wait for falling and set bouncetime to prevent the callback function from being called multiple times when the button is pressed
+                          bouncetime=200)  # wait for falling and set bouncetime to prevent the callback function from being called multiple times when the button is pressed
 
     while True:
         pass
@@ -45,18 +45,22 @@ def loop():
 
 
 def Start_Log(ev=None):
-    Trigger_Date = time.strftime("      %a %d-%m-%Y @ %H:%M:%S")
-    Start_Time = time.time()
+    time.sleep(0.1)
+    if GPIO.input(Beam1):
 
-    while (GPIO.input(Beam1)):
-        GPIO.output(Led, True)
+        Trigger_Date = time.strftime("      %a %d-%m-%Y @ %H:%M:%S")
+        Start_Time = time.time()
+
+        while (GPIO.input(Beam1)):
+            GPIO.output(Led, True)
 
     Delta = time.time() - Start_Time
 
-    with open('Beam_Log.csv', 'a') as csvfile:
-        Append_Log = csv.writer(csvfile)
-        Append_Log.writerow([Trigger_Date, Delta])
-    csvfile.close()
+    if Delta >= 0.1:
+        with open('Beam_Log.csv', 'a') as csvfile:
+            Append_Log = csv.writer(csvfile)
+            Append_Log.writerow([Trigger_Date, Delta])
+        csvfile.close()
 
     GPIO.output(Led, False)
 
