@@ -56,11 +56,11 @@ def Start_Log(ev=None):
 
         Delta = time.time() - Start_Time
 
-    if Delta >= 0.5:
-        with open('Beam_Log.csv', 'a') as csvfile:
-            Append_Log = csv.writer(csvfile)
-            Append_Log.writerow([Trigger_Date, Delta])
-        csvfile.close()
+        if Delta >= 0.5:
+            with open('Beam_Log.csv', 'a') as csvfile:
+                Append_Log = csv.writer(csvfile)
+                Append_Log.writerow([Trigger_Date, Delta])
+            csvfile.close()
 
     GPIO.output(Led, False)
 
